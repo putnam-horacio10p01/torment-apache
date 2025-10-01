@@ -10,6 +10,7 @@ jobs:
     - uses: Vampire/setup-wsl@v6
       with:
           distribution: Ubuntu-24.04
-    - run: |
-          ls -al
-          lscpu
+          wsl-shell-command: bash -c "cd && bash --noprofile --norc -euo pipefail '{0}'"
+    - shell: wsl-bash {0}
+      run: |
+        pwd
