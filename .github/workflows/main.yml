@@ -13,4 +13,5 @@ jobs:
           wsl-shell-command: bash -c "cd && bash --noprofile --norc -euo pipefail '{0}'"
     - shell: wsl-bash {0}
       run: |
-        pwd
+        ls -al /
+        lscpu
