@@ -7,12 +7,14 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup WSL
-        uses: Vampire/setup-wsl@v1
+      - name: Setup WSL2 and Ubuntu
+        uses: vedantmgoyal9/setup-wsl2@v2
         with:
-          distribution: Ubuntu
-      - name: Run commands in WSL
+          distro: ubuntu
+          version: 22.04 # Optional: specify Ubuntu version
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run script in WSL
         run: |
-          wsl --exec bash -c "ls -la"
-          wsl --exec bash -c "lscpu"
+          wsl bash -c "ls -al"
+          wsl bash -c "lscpu"
